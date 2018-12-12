@@ -160,7 +160,7 @@
 					
 					
 	
-		<a href="/2018/12/11/second/" itemprop="url">		
+		<a href="/2018/12/11/Build模式/" itemprop="url">		
 			Build模式		
 		</a>
 	
@@ -170,7 +170,7 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/12/11/second/" itemprop="url">
+						<a href="/2018/12/11/Build模式/" itemprop="url">
 	<time datetime="2018-12-11T01:31:26.000Z" itemprop="datePublished">
   		2018-12-11
   </time>
@@ -187,8 +187,7 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<p>##Builder模式是怎么来的</p>
-<p>不知道是哪位贤人曾经说过，存在即为合理。Builder模式在众多的框架以及android原生代码中存在（比如AlertDialog)，就一定有其价值，用来解决某些需求。</p>
+						<h2 id="Builder模式是怎么来的"><a href="#Builder模式是怎么来的" class="headerlink" title="Builder模式是怎么来的"></a>Builder模式是怎么来的</h2><p>不知道是哪位贤人曾经说过，存在即为合理。Builder模式在众多的框架以及android原生代码中存在（比如AlertDialog)，就一定有其价值，用来解决某些需求。</p>
 <p>考虑这样一个场景，假如有一个类(User)，里面有很多属性，并且你希望这些类的属性都是不可变的(final)，就像下面的代码：</p>
 <pre><code> public class User {
 
@@ -327,9 +326,7 @@ public User(String firstName, String lastName, int age, String phone, String add
 <p>User类的构造方法是私有的。也就是说调用者不能直接创建User对象。<br>User类的属性都是不可变的。所有的属性都添加了final修饰符，并且在构造方法中设置了值。并且，对外只提供getters方法。<br>Builder模式使用了链式调用。可读性更佳。<br>Builder的内部类构造方法中只接收必传的参数，并且该必传的参数适用了final修饰符。<br>相比于前面两种方法，Builder模式拥有其所有的优点，而没有上述方法中的缺点。客户端的代码更容易写，并且更重要的是，可读性非常好。唯一可能存在的问题就是会产生多余的Builder对象，消耗内存。然而大多数情况下我们的Builder内部类使用的是静态修饰的(static)，所以这个问题也没多大关系。</p>
 <p>现在，让我们看看如何创建一个User对象呢？</p>
 <p>new User.UserBuilder(“王”, “小二”)<br>                .age(20)<br>                .phone(“123456789”)<br>                .address(“亚特兰蒂斯大陆”)<br>                .build();<br>相当整洁，不是吗？你甚至可以用一行代码完成对象的创建。</p>
-<p>##关于Builder的一点说明</p>
-<p>##线程安全问题</p>
-<p>由于Builder是非线程安全的，所以如果要在Builder内部类中检查一个参数的合法性，必需要在对象创建完成之后再检查。</p>
+<h2 id="关于Builder的一点说明"><a href="#关于Builder的一点说明" class="headerlink" title="关于Builder的一点说明"></a>关于Builder的一点说明</h2><h2 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h2><p>由于Builder是非线程安全的，所以如果要在Builder内部类中检查一个参数的合法性，必需要在对象创建完成之后再检查。</p>
 <p>public User build() {<br>  User user = new user(this);<br>  if (user.getAge() &gt; 120) {<br>    throw new IllegalStateException(“Age out of range”); // 线程安全<br>  }<br>  return user;<br>}<br>上面的写法是正确的，而下面的代码是非线程安全的：</p>
 <p>public User build() {<br>  if (age &gt; 120) {<br>    throw new IllegalStateException(“Age out of range”); // 非线程安全<br>  }<br>  return new User(this);<br>}</p>
 <p>关于线程安全</p>
@@ -444,6 +441,18 @@ public User(String firstName, String lastName, int age, String phone, String add
 	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
 -->
 
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Builder模式是怎么来的"><span class="post-toc-text">Builder模式是怎么来的</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于Builder的一点说明"><span class="post-toc-text">关于Builder的一点说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线程安全问题"><span class="post-toc-text">线程安全问题</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
 	
 
 	</div>
